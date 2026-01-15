@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+struct Berry
+{
+    public float x;
+    public float y;
+}
+
 public class BerryBush : MonoBehaviour
 {
     public GameObject berryPre;
@@ -18,6 +24,24 @@ public class BerryBush : MonoBehaviour
     {
         if (berryCount <= 6)
         {
+            List<Berry> bPosList = new List<Berry> {new Berry{x = 0.3f, y =0.1f}, new Berry{x = -0.2f, y = 0.2f},new Berry{x = 0.1f, y = -0.3f}};
+            List<Berry> bPosListCopy = new List<Berry>(bPosList);
+
+            
+            if (bPosListCopy.Count > 0)
+            {
+                int randomIndex = Random.Range(0, bPosListCopy.Count);
+            
+                float randomValueX = bPosListCopy[randomIndex].x;
+                float randomValueY = bPosListCopy[randomIndex].y;
+                
+                bPosListCopy.RemoveAt(randomIndex);
+                
+                //Debug.Log("random Index : " + randomIndex);
+                //Debug.Log("list count : " + bPosListCopy.Count);
+                //Debug.Log(" X값: " + randomValueX + " Y값: " + randomValueY);
+            }
+            
             float berryX = Random.Range(-0.25f, 0.25f);
             float berryY = Random.Range(-0.25f, 0.25f);
             Vector3 spawnPos = new Vector3(berryX, berryY, transform.position.z);
@@ -31,24 +55,4 @@ public class BerryBush : MonoBehaviour
         }
         
     }
-    
-    // void SpawnWithoutOverlap()
-    // {
-    //     Vector2 spawnPos;
-    //     bool canSpawn = false;
-    //
-    //     while (!canSpawn)
-    //     {
-    //         spawnPos = new Vector2(Random.Range(-spawnRange.x, spawnRange.x), Random.Range(-spawnRange.y, spawnRange.y));
-    //     
-    //         // 해당 위치에 'Obstacle' 레이어를 가진 콜라이더가 있는지 체크
-    //         Collider2D hit = Physics2D.OverlapCircle(spawnPos, prefabRadius);
-    //     
-    //         if (hit == null) {
-    //             Instantiate(prefab, spawnPos, Quaternion.identity);
-    //             canSpawn = true;
-    //         }
-    //     }
-
-    
 }
