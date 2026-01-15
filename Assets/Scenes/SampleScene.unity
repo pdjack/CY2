@@ -813,7 +813,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BerryBush
   berryPre: {fileID: 7339990018809995640, guid: 60f892faeebc6439e84a419ca3e8aa6d, type: 3}
-  berryCount: 0
 --- !u!58 &2003039449
 CircleCollider2D:
   m_ObjectHideFlags: 0
